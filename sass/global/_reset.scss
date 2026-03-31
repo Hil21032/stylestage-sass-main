@@ -1,0 +1,122 @@
+// global/_reset.scss
+// Modern CSS reset — sensible defaults without being opinionated
+
+// ─── Box Sizing ──────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// ─── Root Defaults ───────────────────────────────────────────
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  hanging-punctuation: first last;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+// ─── Body ────────────────────────────────────────────────────
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// ─── Typography Reset ────────────────────────────────────────
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: var(--line-height-heading);
+}
+
+p {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+// ─── Lists ───────────────────────────────────────────────────
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+// ─── Media ───────────────────────────────────────────────────
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+// ─── Form Elements ───────────────────────────────────────────
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+// ─── Links ───────────────────────────────────────────────────
+a {
+  color: inherit;
+  text-decoration-skip-ink: auto;
+}
+
+// ─── Avoid Text Overflow ─────────────────────────────────────
+h1, h2, h3, h4,
+p, li, blockquote {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+// ─── Remove Animations for Users Who Prefer Reduced Motion ──
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ─── Focus Styles ────────────────────────────────────────────
+// Remove default outline only when using mouse
+// Keep it for keyboard navigation
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+// ─── Hidden but accessible ───────────────────────────────────
+// Use for screen-reader only content
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -1,0 +1,101 @@
+// blocks/_styles.scss
+@use '../utilities/mixins' as mixins;
+
+#styles {
+  padding: var(--space-xl) var(--space-lg);
+  position: relative;
+  background: linear-gradient(to bottom, var(--color-background), #e8f0e8);
+
+  @include mixins.mountain-divider('%23F5F5F0', 60px);
+
+  .container {
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  h2 {
+    @include mixins.section-heading($centered: true);
+    margin-bottom: var(--space-xl);
+
+    &::after {
+      margin-inline: auto;
+    }
+  }
+
+  p {
+    text-align: center;
+    max-width: 55ch;
+    margin-inline: auto;
+    margin-bottom: var(--space-xl);
+    color: #555;
+  }
+
+  // ─── Cards Grid ───────────────────────────────────────────
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  li {
+    @include mixins.surface(0.75rem);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid var(--color-primary);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgb(25 68 34 / 0.15);
+      border-top-color: var(--color-secondary);
+    }
+
+    // Decorative forest scene at top of each card
+    &::before {
+      content: '';
+      display: block;
+      height: 80px;
+      background:
+        linear-gradient(to bottom, #87CEEB, #c8dac0 60%, #228B22 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 80' preserveAspectRatio='none'%3E%3Cpolygon fill='%231a5c1a' points='0,80 50,30 100,80'/%3E%3Cpolygon fill='%23228B22' points='60,80 120,15 180,80'/%3E%3Cpolygon fill='%231a5c1a' points='150,80 210,35 270,80'/%3E%3Cpolygon fill='%23228B22' points='220,80 270,20 320,80'/%3E%3C/svg%3E");
+      background-blend-mode: multiply;
+      background-size: cover;
+    }
+  }
+
+  // ─── View All Styles Link ──────────────────────────────────
+  .container > a,
+  .link-allstyles {
+    display: block;
+    text-align: center;
+    margin-top: var(--space-xl);
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-lg);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--border-radius);
+    width: fit-content;
+    margin-inline: auto;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: var(--color-primary);
+      color: var(--color-light);
+    }
+  }
+}
+
+@include mixins.reduced-motion {
+  #styles li {
+    transition: none;
+    &:hover { transform: none; }
+  }
+}

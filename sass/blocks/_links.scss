@@ -1,0 +1,115 @@
+// blocks/_links.scss
+// Global link and anchor styles across the page
+
+a {
+  color: var(--color-anchor);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+// ─── Skip Link ──────────────────────────────────────────────
+// Accessibility — must be visible on focus
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 999;
+  background: var(--color-text);
+  color: var(--color-light);
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-label);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// ─── CTA / Button Links ─────────────────────────────────────
+// Catches all Style Stage generated button classes
+[class^="link"],
+[class*=" link"] {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-label);
+  font-size: 1rem;
+  font-weight: var(--font-weight-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  background: var(--color-primary);
+  color: var(--color-light);
+  border: 2px solid var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary-alt);
+    border-color: var(--color-primary-alt);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(34 139 34 / 0.3);
+    color: var(--color-light);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 3px;
+  }
+}
+
+// Outlined secondary variant
+.link-allstyles,
+.link-codepen {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-light);
+  }
+}
+
+// Accent orange — primary CTA
+.link-guidelines {
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border-color: var(--color-secondary);
+
+  &:hover {
+    background: #e07800;
+    border-color: #e07800;
+    box-shadow: 0 4px 12px rgb(255 140 0 / 0.35);
+    color: var(--color-text);
+  }
+}
+
+// Download buttons — handled in _files.scss
+// Defined here for global cascade awareness
+
+@media (prefers-reduced-motion: reduce) {
+  [class^="link"],
+  [class*=" link"] {
+    transition: color 0.2s ease;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}

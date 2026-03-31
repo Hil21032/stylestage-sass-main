@@ -1,0 +1,78 @@
+// global/_theme.scss
+// Design tokens — single source of truth for all colors, spacing, and visual constants
+
+:root {
+
+  // ─── Brand Colors ─────────────────────────────────────────
+  --color-forest:       #228B22; // primary green
+  --color-forest-dark:  #1a6b1a; // hover/alt green
+  --color-forest-deep:  #174d17; // darkest green, pine shadows
+  --color-river:        #4169E1; // anchor/link blue
+  --color-sunset:       #FF8C00; // accent orange
+  --color-sunset-dark:  #e07800; // hover orange
+  --color-stone:        #8B7355; // warm mid-tone
+  --color-snow:         #F5F5F0; // off-white background
+  --color-bark:         #2C1810; // near-black text
+  --color-mist:         #e8f0e8; // light green-tinted sections
+
+  // ─── Semantic Aliases ─────────────────────────────────────
+  // These names match what the default Style Stage CSS references
+  // so existing styles continue to work with our palette
+  --color-primary:      var(--color-forest);
+  --color-primary-alt:  var(--color-forest-dark);
+  --color-secondary:    var(--color-sunset);
+  --color-background:   var(--color-snow);
+  --color-text:         var(--color-bark);
+  --color-anchor:       var(--color-river);
+  --color-light:        #ffffff;
+
+  // ─── Surface Colors ───────────────────────────────────────
+  --color-surface:      rgb(255 255 255 / 0.82);
+  --color-surface-alt:  rgb(232 240 232 / 0.6);
+  --color-border:       rgb(34 139 34 / 0.18);
+  --color-border-dark:  rgb(34 52 33 / 0.35);
+
+  // ─── Spacing Scale ────────────────────────────────────────
+  --space-xs:   0.25rem;  //  4px
+  --space-sm:   0.5rem;   //  8px
+  --space-md:   1rem;     // 16px
+  --space-lg:   2rem;     // 32px
+  --space-xl:   4rem;     // 64px
+  --space-2xl:  8rem;     // 128px
+
+  // ─── Typography ───────────────────────────────────────────
+  --font-heading:       'Playfair Display', Georgia, serif;
+  --font-body:          'Source Serif 4', Georgia, serif;
+  --font-label:         'Oswald', 'Arial Narrow', sans-serif;
+  --font-mono:          'Courier New', Courier, monospace;
+
+  --font-weight-normal: 400;
+  --font-weight-strong: 700;
+  --font-weight-black:  900;
+
+  // ─── Borders & Radius ─────────────────────────────────────
+  --border-radius:      4px;
+  --border-radius-lg:   1rem;
+  --border-radius-full: 9999px;
+
+  --border-width:       1px;
+  --border-width-thick: 3px;
+
+  // ─── Shadows ──────────────────────────────────────────────
+  --shadow-sm:  0 2px 8px rgb(25 68 34 / 0.08);
+  --shadow-md:  0 0.6rem 1.6rem rgb(25 68 34 / 0.09);
+  --shadow-lg:  0 12px 28px rgb(25 68 34 / 0.15);
+
+  // ─── Transitions ──────────────────────────────────────────
+  --transition-fast:    0.15s ease;
+  --transition-base:    0.25s ease;
+  --transition-slow:    0.4s ease;
+
+  // ─── Z-Index Scale ────────────────────────────────────────
+  --z-below:    -1;
+  --z-base:      0;
+  --z-above:     1;
+  --z-sticky:  100;
+  --z-modal:   200;
+  --z-toast:   300;
+}

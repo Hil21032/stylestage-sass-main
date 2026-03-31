@@ -1,0 +1,94 @@
+@use '../utilities/mixins' as mixins;
+
+#about {
+  background-color: var(--color-background);
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-secondary);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  p {
+    margin-bottom: var(--space-md);
+    max-width: 65ch;
+  }
+
+  a {
+    color: var(--color-anchor);
+    font-weight: var(--font-weight-strong);
+  }
+}
+
+// Modern CSS features list section
+#about + section,
+section:has(ul) {
+  background: linear-gradient(
+    to bottom,
+    var(--color-background) 0%,
+    #e8f0e8 100%
+  );
+  padding: var(--space-xl) var(--space-lg);
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--color-secondary);
+      margin: var(--space-sm) auto 0;
+      border-radius: 2px;
+    }
+  }
+
+  ul {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    background: white;
+    border-left: 4px solid var(--color-primary);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.12);
+      border-left-color: var(--color-secondary);
+    }
+  }
+}

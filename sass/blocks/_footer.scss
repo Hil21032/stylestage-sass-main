@@ -1,0 +1,117 @@
+// blocks/_footer.scss
+@use '../utilities/mixins' as mixins;
+
+.page-footer {
+  background: var(--color-text); // dark bark
+  color: var(--color-light);
+  padding: var(--space-xl) var(--space-lg);
+  position: relative;
+
+  // Mountain silhouette divider at top
+  @include mixins.mountain-divider('%232C1810', 70px);
+
+  // Inner content wrapper
+  .container {
+    max-width: 1200px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+
+    @include mixins.respond-to('md') {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  p {
+    color: rgb(255 255 255 / 0.75);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-sm);
+  }
+
+  a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-weight: var(--font-weight-strong);
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  // "Style Stage" branding in footer
+  .link-github,
+  .link-twittercontact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-secondary);
+    text-decoration: none;
+    margin-right: var(--space-md);
+    margin-top: var(--space-sm);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// Copyright / sub-footer strip
+.page-footer__credits {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: 0.8rem;
+  color: rgb(255 255 255 / 0.45);
+  max-width: 1200px;
+  margin-inline: auto;
+
+  @include mixins.respond-to('md') {
+    justify-content: center;
+    text-align: center;
+  }
+
+  a {
+    color: rgb(255 255 255 / 0.45);
+    &:hover { color: var(--color-secondary); }
+  }
+}
+
+// Pine tree row decoration above footer text
+.page-footer .container::before {
+  content: '';
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-bottom: var(--space-md);
+  // Three pine trees as text characters — pure CSS, no images
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 1rem;
+  // Use a Unicode tree or the CSS triangle trick via background
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpolygon fill='%23228B22' points='20,40 40,5 60,40'/%3E%3Cpolygon fill='%23228B22' points='80,40 100,5 120,40'/%3E%3Cpolygon fill='%23228B22' points='140,40 160,5 180,40'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 40px;
+}
+
+@include mixins.reduced-motion {
+  .page-footer a {
+    transition: none;
+  }
+}

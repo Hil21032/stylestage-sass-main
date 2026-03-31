@@ -1,0 +1,111 @@
+// utilities/_mixins.scss
+
+// ─── Surface Card ───────────────────────────────────────────
+// Glass-like white card with green-tinted shadow
+@mixin surface($radius: 1rem) {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: $radius;
+  box-shadow: var(--shadow-md);
+}
+
+// ─── Pine Tree ──────────────────────────────────────────────
+// CSS triangle tree shape for decorative ::before/::after use
+@mixin pine-tree($size: 1.2rem, $trunk: 0.34rem) {
+  width: 0;
+  height: 0;
+  border-left: calc(#{$size} * 0.7) solid transparent;
+  border-right: calc(#{$size} * 0.7) solid transparent;
+  border-bottom: $size solid var(--color-primary);
+  content: '';
+  box-shadow: 0 calc(#{$size} * 0.55) 0 calc(#{$trunk} * 0.4) rgb(90 61 33 / 0.9);
+}
+
+// ─── Section Heading ────────────────────────────────────────
+// Consistent h2 with optional orange accent underline bar
+@mixin section-heading($accent: true, $centered: false) {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+
+  @if $centered {
+    text-align: center;
+  }
+
+  @if $accent {
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--color-secondary);
+      margin-top: var(--space-sm);
+      border-radius: 2px;
+
+      @if $centered {
+        margin-inline: auto;
+      }
+    }
+  }
+}
+
+// ─── Mountain Divider ───────────────────────────────────────
+// SVG jagged mountain edge between sections
+// $fill: URL-encoded hex of the NEXT section's bg color
+// e.g. pass '%23F5F5F0' for #F5F5F0
+@mixin mountain-divider($fill: '%23F5F5F0', $height: 60px) {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: $height;
+    position: absolute;
+    top: calc(#{$height} * -1 + 1px);
+    left: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpolygon fill='#{$fill}' points='0,60 120,10 240,60'/%3E%3Cpolygon fill='#{$fill}' points='200,60 340,5 480,60'/%3E%3Cpolygon fill='#{$fill}' points='420,60 560,15 700,60'/%3E%3Cpolygon fill='#{$fill}' points='640,60 800,0 960,60'/%3E%3Cpolygon fill='#{$fill}' points='880,60 1040,10 1200,60'/%3E%3Cpolygon fill='#{$fill}' points='1100,60 1260,8 1440,60'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+// ─── Pine Tree Row ──────────────────────────────────────────
+// Full-width SVG pine tree silhouette strip
+// Use as a section separator background
+@mixin pine-row($fill: '%23174d17', $height: 80px) {
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: $height;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpolygon fill='#{$fill}' points='0,80 40,20 80,80'/%3E%3Cpolygon fill='#{$fill}' points='60,80 110,10 160,80'/%3E%3Cpolygon fill='#{$fill}' points='130,80 180,25 230,80'/%3E%3Cpolygon fill='#{$fill}' points='200,80 260,5 320,80'/%3E%3Cpolygon fill='#{$fill}' points='290,80 345,18 400,80'/%3E%3Cpolygon fill='#{$fill}' points='370,80 430,8 490,80'/%3E%3Cpolygon fill='#{$fill}' points='460,80 515,22 570,80'/%3E%3Cpolygon fill='#{$fill}' points='540,80 600,12 660,80'/%3E%3Cpolygon fill='#{$fill}' points='630,80 685,20 740,80'/%3E%3Cpolygon fill='#{$fill}' points='710,80 770,6 830,80'/%3E%3Cpolygon fill='#{$fill}' points='800,80 855,18 910,80'/%3E%3Cpolygon fill='#{$fill}' points='880,80 940,10 1000,80'/%3E%3Cpolygon fill='#{$fill}' points='970,80 1025,24 1080,80'/%3E%3Cpolygon fill='#{$fill}' points='1050,80 1110,8 1170,80'/%3E%3Cpolygon fill='#{$fill}' points='1140,80 1195,20 1250,80'/%3E%3Cpolygon fill='#{$fill}' points='1220,80 1280,12 1340,80'/%3E%3Cpolygon fill='#{$fill}' points='1310,80 1365,18 1420,80'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+// ─── Respond To ─────────────────────────────────────────────
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: 480px) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: 768px) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: 1024px) { @content; }
+  }
+}
+
+// ─── Flex Center ────────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── Reduced Motion ─────────────────────────────────────────
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}

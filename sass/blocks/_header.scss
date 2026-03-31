@@ -1,0 +1,119 @@
+// blocks/_header.scss
+@use '../utilities/mixins' as mixins;
+
+header {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  position: relative;
+  overflow: hidden;
+
+  // Sky gradient background
+  background: linear-gradient(
+    to bottom,
+    #87CEEB 0%,
+    #b8d4e8 35%,
+    #c8dac0 60%,
+    #5a9e5a 80%,
+    #228B22 100%
+  );
+
+  // Mountain silhouette layer
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 240' preserveAspectRatio='none'%3E%3C!-- Back mountains (lighter) --%3E%3Cpolygon fill='%235a9e5a' points='0,240 280,60 560,240'/%3E%3Cpolygon fill='%235a9e5a' points='400,240 720,20 1040,240'/%3E%3Cpolygon fill='%235a9e5a' points='880,240 1160,80 1440,240'/%3E%3C!-- Front mountains (darker) --%3E%3Cpolygon fill='%23228B22' points='0,240 200,100 400,240'/%3E%3Cpolygon fill='%231a6b1a' points='200,240 480,40 760,240'/%3E%3Cpolygon fill='%23228B22' points='600,240 880,80 1160,240'/%3E%3Cpolygon fill='%231a6b1a' points='960,240 1200,30 1440,240'/%3E%3C!-- Snow caps --%3E%3Cpolygon fill='%23f0f4f0' points='480,40 510,80 450,80'/%3E%3Cpolygon fill='%23f0f4f0' points='1200,30 1232,75 1168,75'/%3E%3Cpolygon fill='%23f0f4f0' points='720,20 755,68 685,68'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+
+  // Pine tree row at the very bottom
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpolygon fill='%23174d17' points='0,80 40,20 80,80'/%3E%3Cpolygon fill='%231a5c1a' points='60,80 110,10 160,80'/%3E%3Cpolygon fill='%23174d17' points='130,80 180,25 230,80'/%3E%3Cpolygon fill='%231a5c1a' points='200,80 260,5 320,80'/%3E%3Cpolygon fill='%23174d17' points='290,80 345,18 400,80'/%3E%3Cpolygon fill='%231a5c1a' points='370,80 430,8 490,80'/%3E%3Cpolygon fill='%23174d17' points='460,80 515,22 570,80'/%3E%3Cpolygon fill='%231a5c1a' points='540,80 600,12 660,80'/%3E%3Cpolygon fill='%23174d17' points='630,80 685,20 740,80'/%3E%3Cpolygon fill='%231a5c1a' points='710,80 770,6 830,80'/%3E%3Cpolygon fill='%23174d17' points='800,80 855,18 910,80'/%3E%3Cpolygon fill='%231a5c1a' points='880,80 940,10 1000,80'/%3E%3Cpolygon fill='%23174d17' points='970,80 1025,24 1080,80'/%3E%3Cpolygon fill='%231a5c1a' points='1050,80 1110,8 1170,80'/%3E%3Cpolygon fill='%23174d17' points='1140,80 1195,20 1250,80'/%3E%3Cpolygon fill='%231a5c1a' points='1220,80 1280,12 1340,80'/%3E%3Cpolygon fill='%23174d17' points='1310,80 1365,18 1420,80'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  // All content above the pseudo-elements
+  * {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h1);
+    color: #fff;
+    text-shadow: 2px 4px 12px rgb(0 0 0 / 0.35);
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-sm);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-family: var(--font-label);
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgb(255 255 255 / 0.9);
+    margin-bottom: var(--space-lg);
+    text-shadow: 1px 2px 6px rgb(0 0 0 / 0.25);
+  }
+
+  p {
+    color: rgb(255 255 255 / 0.88);
+    max-width: 50ch;
+    line-height: 1.7;
+    text-shadow: 1px 1px 4px rgb(0 0 0 / 0.2);
+    margin-bottom: var(--space-lg);
+  }
+
+  // CTA button
+  [class^="link"] {
+    background: var(--color-secondary);
+    color: var(--color-text);
+    padding: 0.85rem 2.2rem;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.2);
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+      background: #e07800;
+      transform: translateY(-2px);
+    }
+  }
+
+  @include mixins.respond-to('md') {
+    min-height: 50vh;
+
+    h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
+  }
+}
+
+@include mixins.reduced-motion {
+  header [class^="link"] {
+    transition: none;
+    &:hover { transform: none; }
+  }
+}

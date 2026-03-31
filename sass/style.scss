@@ -1,0 +1,33 @@
+// sass/style.scss
+// ─── CUBE CSS Architecture ───────────────────────────────────
+// Order matters: Global → Composition → Utilities → Blocks
+
+// ─── Global ──────────────────────────────────────────────────
+// Fonts must load first before anything references them
+@use 'global/fonts';
+@use 'global/reset';
+@use 'global/theme';
+@use 'global/typography';
+
+// ─── Composition ─────────────────────────────────────────────
+// Macro layout — page grid, section wrappers, spacing
+@use 'composition/layout';
+
+// ─── Utilities ───────────────────────────────────────────────
+// Mixins must be available before blocks that @use them
+// Note: mixins don't output CSS on their own — no order issue
+@use 'utilities/mixins';
+
+// ─── Blocks ──────────────────────────────────────────────────
+// Each file scoped to its section — order follows page flow
+@use 'blocks/header';
+@use 'blocks/nav';
+@use 'blocks/about';
+@use 'blocks/guidelines';
+@use 'blocks/profile';
+@use 'blocks/contribute';
+@use 'blocks/files';
+@use 'blocks/styles';
+@use 'blocks/links';
+@use 'blocks/logomark';
+@use 'blocks/footer';

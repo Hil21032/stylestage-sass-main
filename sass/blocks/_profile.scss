@@ -1,0 +1,134 @@
+// blocks/_profile.scss
+@use '../utilities/mixins' as mixins;
+
+// ─── Currently Staged Profile (Sidebar) ─────────────────────
+// Appears in the #guidelines section as a sidebar card
+
+.profile {
+  @include mixins.surface;
+  padding: var(--space-lg);
+  position: sticky;
+  top: calc(var(--space-lg) + 4rem); // offset below sticky nav
+
+  // "Currently Staged" label
+  &::before {
+    content: '🌲 Currently Staged';
+    display: block;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-secondary);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid rgb(34 139 34 / 0.15);
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h4);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs, 0.25rem);
+    line-height: 1.3;
+  }
+
+  h4 {
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: var(--space-md);
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  a {
+    display: inline-block;
+    font-family: var(--font-label);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--border-radius);
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: var(--color-primary);
+      color: var(--color-light);
+    }
+  }
+}
+
+// ─── Featured Styles Profile Cards ──────────────────────────
+// Appears inside #styles section cards
+
+#styles .profile {
+  position: static; // override sticky — cards don't need it
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: var(--space-md) var(--space-lg);
+
+  &::before {
+    display: none; // no "currently staged" label in cards
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  h4 {
+    margin-bottom: var(--space-sm);
+  }
+
+  // Style name link
+  a:first-of-type {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-anchor);
+    text-transform: none;
+    letter-spacing: 0;
+    border: none;
+    padding: 0;
+    font-weight: 700;
+    margin-bottom: var(--space-xs, 0.25rem);
+
+    &:hover {
+      color: var(--color-primary);
+      background: transparent;
+    }
+  }
+
+  // Website link
+  a:last-of-type {
+    font-size: 0.75rem;
+    color: #888;
+    padding: 0;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    &:hover {
+      color: var(--color-primary);
+      background: transparent;
+    }
+  }
+}
+
+@include mixins.reduced-motion {
+  .profile a {
+    transition: none;
+  }
+}
