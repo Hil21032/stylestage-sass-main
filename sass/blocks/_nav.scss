@@ -2,14 +2,16 @@
 @use '../utilities/mixins' as mixins;
 
 nav {
-  background: var(--color-text); // dark bark
+  background: var(--color-text);
   padding: var(--space-sm) var(--space-lg);
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 12px rgb(0 0 0 / 0.25);
 
-  // Inner flex container
+  // ─── Handle both <nav><ul> and <nav><div class="container"><ul> ───
+  // Apply flex centering directly to ul if no .container exists
+  > ul,
   .container {
     max-width: 1200px;
     margin-inline: auto;
@@ -20,8 +22,8 @@ nav {
     flex-wrap: wrap;
   }
 
-  // Nav links group
-  ul {
+  // If .container exists, reset ul inside it
+  .container ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -29,6 +31,15 @@ nav {
     align-items: center;
     gap: var(--space-lg);
     flex-wrap: wrap;
+  }
+
+  // Direct ul (no .container wrapper — Style Stage's actual HTML)
+  > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: var(--space-lg);
+    justify-content: flex-start;
   }
 
   li {
@@ -45,8 +56,8 @@ nav {
     padding: var(--space-xs, 0.25rem) 0;
     position: relative;
     transition: color 0.2s ease;
+    white-space: nowrap;
 
-    // Animated underline on hover
     &::after {
       content: '';
       position: absolute;
@@ -61,9 +72,7 @@ nav {
     &:hover {
       color: #fff;
 
-      &::after {
-        width: 100%;
-      }
+      &::after { width: 100%; }
     }
 
     &:focus-visible {
@@ -73,8 +82,9 @@ nav {
     }
   }
 
-  // Active/current page indicator
-  [aria-current="page"] {
+  // Active link
+  [aria-current="page"],
+  li:has(a[aria-current="page"]) a {
     color: var(--color-secondary);
 
     &::after {
@@ -83,7 +93,6 @@ nav {
     }
   }
 
-  // Site name / logo in nav
   .site-name,
   [class*="logomark"] {
     font-family: var(--font-heading);
@@ -94,38 +103,35 @@ nav {
     letter-spacing: 0.05em;
     white-space: nowrap;
 
-    &::before {
-      content: '🌲 ';
-    }
+    &::before { content: '🌲 '; }
   }
 
-  // Mobile — stack nav links
+  // ─── Mobile ────────────────────────────────────────────
   @include mixins.respond-to('md') {
     padding: var(--space-sm) var(--space-md);
 
+    > ul,
     .container {
       justify-content: center;
     }
 
-    ul {
+    .container ul,
+    > ul {
       gap: var(--space-md);
       justify-content: center;
     }
   }
 
   @include mixins.respond-to('sm') {
-    ul {
+    > ul,
+    .container ul {
       gap: var(--space-sm);
     }
 
-    a {
-      font-size: 0.75rem;
-    }
+    a { font-size: 0.75rem; }
   }
 }
 
 @include mixins.reduced-motion {
-  nav a::after {
-    transition: none;
-  }
+  nav a::after { transition: none; }
 }

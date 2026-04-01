@@ -8,7 +8,6 @@ body {
 }
 
 // ─── Full Bleed Sections ────────────────────────────────────
-// These sections span full viewport width
 header,
 nav,
 #files,
@@ -17,87 +16,137 @@ nav,
 }
 
 // ─── Content Wrapper ────────────────────────────────────────
-// Centered max-width container for inner content
-// Uses min() so padding is always respected
 %wrapper {
   width: min(1200px, 100% - (var(--space-lg) * 2));
   margin-inline: auto;
 }
 
-// ─── Section Spacing ────────────────────────────────────────
+// ─── Scroll Offset for Sticky Nav ───────────────────────────
 #about,
 #guidelines,
 #contribute,
 #styles,
 #files {
-  padding-block: var(--space-xl);
+  scroll-margin-top: 3.5rem;
 }
 
-// ─── About — Two Column ─────────────────────────────────────
+// ─── About ──────────────────────────────────────────────────
 #about {
   @extend %wrapper;
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: auto 1fr;
-  gap: var(--space-lg) var(--space-xl);
-  align-items: start;
-
-  // Section heading spans full width
-  h2 {
-    grid-column: 1 / -1;
-  }
-
-  // Features list spans full width below
-  #about-css-features {
-    grid-column: 1 / -1;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+  display: block;
+  padding-top: var(--space-lg);
 }
 
-// ─── Guidelines — Sidebar Layout ────────────────────────────
+// ─── Guidelines ─────────────────────────────────────────────
 #guidelines {
   @extend %wrapper;
   display: grid;
-  grid-template-columns: 2fr 1fr;
   gap: var(--space-xl);
   align-items: start;
+  padding: var(--space-md) var(--space-lg);
 
-  h2 {
-    grid-column: 1 / -1;
-  }
+  h2 { grid-column: 1 / -1; }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-
-    .profile {
-      position: static;
-    }
   }
 }
 
-// ─── Contribute — Full Width ─────────────────────────────────
+// ─── Contribute ─────────────────────────────────────────────
 #contribute {
   @extend %wrapper;
+  padding: var(--space-md) var(--space-md);
 }
 
-// ─── Styles — Full Width ─────────────────────────────────────
+// ─── Styles (Featured) ──────────────────────────────────────
 #styles {
   padding-inline: var(--space-lg);
+  padding-block: var(--space-xl);
+  scroll-margin-top: 3.5rem;
 }
 
-// ─── Files — Full Bleed with Inner Wrapper ───────────────────
+// ─── Files ──────────────────────────────────────────────────
 #files {
   .container {
     @extend %wrapper;
+    padding-inline: var(--space-lg);
   }
 }
 
-// ─── Footer Inner ────────────────────────────────────────────
-.page-footer .container {
+// ─── Footer ─────────────────────────────────────────────────
+.page-footer {
+  .container {
+    @extend %wrapper;
+    padding-inline: var(--space-lg);
+  }
+}
+
+// In _layout.scss — replace the sr-only profile rule with this:
+.profile {
   @extend %wrapper;
+  padding-block: var(--space-xl);
+  padding-bottom: calc(var(--space-xl) + 60px); // ← extra space for mountain height
+  text-align: center;
+  position: relative; // ← add this
+  z-index: 1;         // ← sit above the mountain divider
+
+  .container {
+    display: inline-block;
+    text-align: left;
+    background: var(--color-surface-alt);
+    border: 1px solid rgb(34 52 33 / 0.15);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    max-width: 320px;
+  }
+
+  h4 {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  li {
+    font-size: 0.9rem;
+    display: flex;
+    gap: var(--space-sm);
+
+    > span:first-child {
+      font-weight: var(--font-weight-strong);
+      color: var(--color-text);
+      min-width: 5rem;
+    }
+
+    > span:last-child {
+      color: var(--color-text);
+    }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-family: var(--font-label);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-strong);
+    text-decoration: none;
+
+    &:hover { color: var(--color-secondary); }
+  }
 }
 
 // ─── Responsive Spacing Scale ────────────────────────────────
@@ -106,6 +155,10 @@ nav,
     --space-xl: 2.5rem;
     --space-lg: 1.25rem;
   }
+
+  #guidelines {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -113,4 +166,9 @@ nav,
     --space-xl: 1.75rem;
     --space-lg: 1rem;
   }
+}
+
+#files {
+  position: relative;
+  z-index: 2; // already has z-index: 1, bump to 2
 }
